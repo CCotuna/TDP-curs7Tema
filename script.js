@@ -1,6 +1,7 @@
 let table = [];
 
 function setup() {
+    noLoop();
     createCanvas(500,500);
     background('#aaaaaa');
 
@@ -20,23 +21,36 @@ function setup() {
         let cols = 0;
         while(cols < 8){
             if(cols % 2 == 0){
-                let box = new Square(cols * 50 + 50, rows * 50 + 50, 50, c1);
-                table.push(box); 
+                let squareObject = new Square(cols * 50 + 50, rows * 50 + 50, 50, c1);
+                table.push(squareObject); 
             } else {
-                let box = new Square(cols * 50 + 50, rows * 50 + 50, 50, c2);
-                table.push(box); 
+                let squareObject = new Square(cols * 50 + 50, rows * 50 + 50, 50, c2);
+                table.push(squareObject); 
             }
             cols += 1;
         }
         rows += 1;
     }
 
+    
+
 }
 
 function draw(){
+    
     for(let box of table){
         box.display();
     }
+
+    let index = Math.floor(random(table.length));
+    let randomSquare = table[index];
+
+    let X = randomSquare.x + randomSquare.size / 2;
+    let Y = randomSquare.y + randomSquare.size / 2;
+
+
+    fill('red');
+    ellipse(X, Y, 30, 30);
 }
 
 class Square {
