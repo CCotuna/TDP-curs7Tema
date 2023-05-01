@@ -44,19 +44,27 @@ function draw(){
 
     let faces = [];
 
-    let index = Math.floor(random(table.length));
-    let randomSquare = table[index];
 
-    let X = randomSquare.x + randomSquare.size / 2;
-    let Y = randomSquare.y + randomSquare.size / 2;
+    let i = 0 ;
+    while(i < 16){
+        let index = Math.floor(random(table.length));
+        let randomSquare = table[index];
 
-    while(faces.length == 16){
-        if(faces.length < 8){
-            faces.push(smileFace(X,Y,30, 'white'));
+        let X = randomSquare.x + randomSquare.size / 2;
+        let Y = randomSquare.y + randomSquare.size / 2;
+
+
+        if(i < 8){
+            faces.push(new smileFace(X, Y, 30, 'red'));
         }
         else{
-            faces.push(smileFace(X,Y,30, 'white'));
+            faces.push(new smileFace(X, Y, 30, 'yellow'));
         }
+        i++;
+    }
+
+    for(let face of faces){
+        face.display();
     }
     
 }
@@ -75,15 +83,35 @@ class Square {
     }
 }
 
+class smileFace {
+    constructor(x, y, diameter, color){
+        this.x = x;
+        this.y = y;
+        this.diameter = diameter;
+        this.color = color;
+    }
 
-function smileFace(x, y, diameter, color){
-    fill(color);
-    circle(x, y, diameter);
+    display(){
+        fill(this.color);
+        circle(x, y, diameter);
 
-    fill('black')
-    circle(x + diameter*0.20, y - diameter*0.10, diameter*0.15);
-    circle(x - diameter*0.20, y - diameter*0.10, diameter*0.15);
+        fill('black')
+        circle(x + diameter*0.20, y - diameter*0.10, diameter*0.15);
+        circle(x - diameter*0.20, y - diameter*0.10, diameter*0.15);
 
-    fill('black');
-    arc(x, y + diameter*0.30 , diameter*0.40, diameter*0.1, 0, Math.PI);
+        fill('black');
+         arc(x, y + diameter*0.30 , diameter*0.40, diameter*0.1, 0, Math.PI);
+    }
 }
+
+// function smileFace(x, y, diameter, color){
+//     fill(color);
+//     circle(x, y, diameter);
+
+//     fill('black')
+//     circle(x + diameter*0.20, y - diameter*0.10, diameter*0.15);
+//     circle(x - diameter*0.20, y - diameter*0.10, diameter*0.15);
+
+//     fill('black');
+//     arc(x, y + diameter*0.30 , diameter*0.40, diameter*0.1, 0, Math.PI);
+// }
