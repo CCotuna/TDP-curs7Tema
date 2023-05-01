@@ -42,15 +42,23 @@ function draw(){
         box.display();
     }
 
+    let faces = [];
+
     let index = Math.floor(random(table.length));
     let randomSquare = table[index];
 
     let X = randomSquare.x + randomSquare.size / 2;
     let Y = randomSquare.y + randomSquare.size / 2;
 
-
-    fill('red');
-    ellipse(X, Y, 30, 30);
+    while(faces.length == 16){
+        if(faces.length < 8){
+            faces.push(smileFace(X,Y,30, 'white'));
+        }
+        else{
+            faces.push(smileFace(X,Y,30, 'white'));
+        }
+    }
+    
 }
 
 class Square {
@@ -65,4 +73,17 @@ class Square {
         fill(this.color);
         square(this.x, this.y, this.size);
     }
+}
+
+
+function smileFace(x, y, diameter, color){
+    fill(color);
+    circle(x, y, diameter);
+
+    fill('black')
+    circle(x + diameter*0.20, y - diameter*0.10, diameter*0.15);
+    circle(x - diameter*0.20, y - diameter*0.10, diameter*0.15);
+
+    fill('black');
+    arc(x, y + diameter*0.30 , diameter*0.40, diameter*0.1, 0, Math.PI);
 }
