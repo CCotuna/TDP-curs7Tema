@@ -43,7 +43,7 @@ function draw(){
     }
 
     let faces = [];
-
+    let facesCoords = [];
 
     let i = 0 ;
     while(i < 16){
@@ -56,11 +56,36 @@ function draw(){
 
         if(i < 8){
             faces.push(new smileFace(X, Y, 30, 'white', 'black'));
+            facesCoords.push({xCoord: X, yCoord: Y});
         }
         else{
             faces.push(new smileFace(X, Y, 30, 'black', 'white'));
+            facesCoords[i] = {xCoord: X, yCoord: Y};
         }
         i++;
+    }
+
+    for(let face1 of facesCoords){
+        console.log(face1.xCoord + " " + face1.yCoord);
+    }
+
+    for(let i = 0; i < faces.length; i++){
+        let instanceA = faces[i];
+        for(let j = i+1; j < faces.length; j++){
+            let instanceB = faces[j];
+            if(instanceA.x == instanceB.x && instanceA.y == instanceB.y){
+
+                let index = Math.floor(random(table.length));
+                let randomSquare = table[index];
+
+                let X = randomSquare.x + randomSquare.size / 2;
+                let Y = randomSquare.y + randomSquare.size / 2;
+                instanceA.x = X;
+                instanceB.y = Y;
+                console.log('Instance at index ${i} and instance at index ${j} share the same coordinates');
+                
+            }
+        }
     }
 
     for(let face of faces){
