@@ -68,11 +68,8 @@ function draw(){
     for(let face1 of facesCoords){
         console.log(face1.xCoord + " " + face1.yCoord);
     }
-
+     
     
-
-    
-      
     for(let face of faces){
         face.display();
     }
