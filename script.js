@@ -69,13 +69,10 @@ function draw(){
         console.log(face1.xCoord + " " + face1.yCoord);
     }
 
-    for(let i = 0; i < faces.length-1; i++){
-        for(let j = i+1; j < faces.length; j++){
-                
-            
-        }
-    }
+    
 
+    
+      
     for(let face of faces){
         face.display();
     }
